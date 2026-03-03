@@ -353,6 +353,7 @@ int event_loop()
 			VERBOSE(tracee, (int) (last_exit_status != -1),
 				"pid %d: terminated with signal %d",
 				pid, WTERMSIG(tracee_status));
+			last_exit_status = 128 + WTERMSIG(tracee_status);
 			TALLOC_FREE(tracee);
 			continue; /* Skip the call to ptrace(SYSCALL). */
 		}
